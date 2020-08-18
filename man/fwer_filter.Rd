@@ -2,7 +2,7 @@
 % Please edit documentation in R/fwer_filter.R
 \name{fwer_filter}
 \alias{fwer_filter}
-\title{Stable variable selectino with k-FWER control}
+\title{Stable variable selection with k-FWER control}
 \usage{
 fwer_filter(
   X,
@@ -73,7 +73,7 @@ The function to implement the derandomized knockoffs procedure with k-FWER contr
  y <- X\%*\%beta+rnorm(n)
 
 # Control 1-FWER at level alpha=0.1
-res <- derandomKnock(X,y,type = "kfwer", k=1, alpha = 0.1, knockoff_method = "gaussian",
-                   mu = rep(0,p),Sigma = Sigma)
+res <- fwer_filter(X,y,type = "kfwer", k=1, alpha = 0.1, knockoff_method = "gaussian",
+                   mu = rep(0,p),Sigma = Sigma,seed = 2020)
 
 }

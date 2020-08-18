@@ -1,16 +1,18 @@
 Package: derandomKnock
-Title: What the Package Does (One Line, Title Case)
+Title: An R package to implement the derandomized knockoffs procedure
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Zhimei",
+           family = "Ren",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+           email = "zren@stanford.edu")
+Description: The package implements the derandomized knockoffs prrocedure. Given the response and the covariates, it automatically returns a set of selected variables with type-I error control gurantee.
+License: `use_mit_license()`
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
+Imports: 
+    knockoff,
+    glmnet,
+    SNPknock

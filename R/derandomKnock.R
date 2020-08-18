@@ -57,7 +57,7 @@ derandomKnock <- function(X,y,type = "pfer",
   ## Check the dimension
   n <- dim(X)[1]
   p <- dim(X)[2]
-  if(length(y)!=n) stop("The dimension of X and y does not match!")
+  if(length(y)!=n) stop("The dimensions of X and y are not compatible!")
 
   ## Check the type of error criterion
   if(type %in% c("pfer","kfwer") == 0) stop("The error criterion is not supported!")
