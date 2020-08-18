@@ -77,13 +77,13 @@ derandomKnock <- function(X,y,type = "pfer",
     ## Continuous response
     if(reponse == "continuous"){
       knockoff_stat  <-  "stat.glmnet_coefdiff"
-      res <- pfer_filter(X,y,k,alpha,M,tau,knockoff_method,
+      res <- fwer_filter(X,y,k,alpha,M,tau,knockoff_method,
                          knockoff_stat,seed,mu,Sigma,pInit,Q,pEmit)
     }
     ## Binary response
     if(reponse == "binary"){
       knockoff_stat  <-  "stat.lasso_coefdiff_bin"
-      res <- pfer_filter(X,y,k,alpha,M,tau,knockoff_method,
+      res <- fwer_filter(X,y,k,alpha,M,tau,knockoff_method,
                          knockoff_stat,seed,mu,Sigma,pInit,Q,pEmit)
     }
   }
