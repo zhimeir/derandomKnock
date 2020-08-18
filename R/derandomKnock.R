@@ -1,4 +1,4 @@
-#' A stable variable procedure based on the knockoffs
+#' A stable variable selection procedure based on the knockoffs
 #' 
 #' The main function that implements the derandomized knockoffs procedure.
 #'
@@ -17,6 +17,8 @@
 #' @param pInit n array of length K, containing the marginal distribution of the states for the first variable, if X is sampled from an HMM.
 #' @param Q an array of size (p-1,K,K), containing a list of p-1 transition matrices between the K states of the Markov chain, if X is sampled from an HMM.
 #' @param pEmit an array of size (p,M,K), containing the emission probabilities for each of the M possible emission states, from each of the K hidden states and the p variables, if X is sampled from an HMM.
+#' @return S the selection set.
+#' @return frequency the selection frequency of the selected variables. 
 #'
 #' @examples
 #'  #Generate data
@@ -29,11 +31,11 @@
 #'  y <- X%*%beta+rnorm(n)
 #' 
 #' # Control PFER at level v=1
-#' S <- derandomKnock(X,y,type = "pfer",v=1, knockoff_method = "gaussian",
+#' res <- derandomKnock(X,y,type = "pfer",v=1, knockoff_method = "gaussian",
 #'                    mu = rep(0,p),Sigma = Sigma)
 #'
 #' # Control 1-FWER at level alpha=0.1
-#' S <- derandomKnock(X,y,type = "kfwer", k=1, alpha = 0.1, knockoff_method = "gaussian",
+#' res <- derandomKnock(X,y,type = "kfwer", k=1, alpha = 0.1, knockoff_method = "gaussian",
 #'                    mu = rep(0,p),Sigma = Sigma)
 #'
 #' @export
@@ -110,6 +112,6 @@ derandomKnock <- function(X,y,type = "pfer",
                          knockoff_stat,seed,mu,Sigma,pInit,Q,pEmit)
     }
   }
-  return(list(S = res$S))
+  return(list(S = res$S, frequency = res$pi[res$S]))
 }
 

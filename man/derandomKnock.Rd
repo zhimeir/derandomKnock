@@ -2,7 +2,7 @@
 % Please edit documentation in R/derandomKnock.R
 \name{derandomKnock}
 \alias{derandomKnock}
-\title{A stable variable procedure based on the knockoffs}
+\title{A stable variable selection procedure based on the knockoffs}
 \usage{
 derandomKnock(
   X,
@@ -53,6 +53,11 @@ derandomKnock(
 
 \item{pEmit}{an array of size (p,M,K), containing the emission probabilities for each of the M possible emission states, from each of the K hidden states and the p variables, if X is sampled from an HMM.}
 }
+\value{
+S the selection set.
+
+frequency the selection frequency of the selected variables.
+}
 \description{
 The main function that implements the derandomized knockoffs procedure.
 }
@@ -67,11 +72,11 @@ The main function that implements the derandomized knockoffs procedure.
  y <- X\%*\%beta+rnorm(n)
 
 # Control PFER at level v=1
-S <- derandomKnock(X,y,type = "pfer",v=1, knockoff_method = "gaussian",
+res <- derandomKnock(X,y,type = "pfer",v=1, knockoff_method = "gaussian",
                    mu = rep(0,p),Sigma = Sigma)
 
 # Control 1-FWER at level alpha=0.1
-S <- derandomKnock(X,y,type = "kfwer", k=1, alpha = 0.1, knockoff_method = "gaussian",
+res <- derandomKnock(X,y,type = "kfwer", k=1, alpha = 0.1, knockoff_method = "gaussian",
                    mu = rep(0,p),Sigma = Sigma)
 
 }
