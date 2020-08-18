@@ -1,5 +1,5 @@
 # derandomKnock
-An R package to implement the derandomized knockoffs.
+An R package to implement the derandomized knockoffs procedure.
 
 ### Overview
 `derandomKnock` is an R package to implement the variable selection procedure <em>Derandomized Knockoffs</em>, proposed in our
