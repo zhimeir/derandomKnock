@@ -1,1 +1,6 @@
 docs
+*.swp
+local.R
+.DS_Store
+.Rbuildignore
+.Rhistory
