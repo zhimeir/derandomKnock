@@ -25,8 +25,8 @@ derandomKnock <- function(X,y,type = "pfer",
 
   ## Check the dependencies
   list_of_packages <- c("knockoff","glmnet","SNPknock")
-  new.packages <- list_of_packages[!(list.of.packages %in% installed.packages()[,"Package"])]
-  if(length(new.packages)) install.packages(new.packages, repos='http://cran.us.r-project.org')
+  new_packages <- list_of_packages[!(list_of_packages %in% installed.packages()[,"Package"])]
+  if(length(new_packages)) install.packages(new_packages, repos='http://cran.us.r-project.org')
   suppressPackageStartupMessages(res <- lapply(X=list_of_packages,FUN=require,character.only=TRUE))
 
   ## Check the dimension
