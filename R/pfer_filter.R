@@ -1,3 +1,6 @@
+#' A filter 
+#'
+#'
 pfer_filter <- function(X,y, v0 = 1, M = 50, tau =0.5, knockoff_method = "gaussian",
                             knockoff_stat = stat.glmnet_coefdiff,seed = 24601,
                             mu = NULL,Sigma =NULL,#parameter for gaussian knockoff

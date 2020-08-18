@@ -1,9 +1,10 @@
 fwer_filter<- function(X,y,k = 1,alpha=0.1,M = 50, tau =0.5, 
                        knockoff_method = "gaussian",
                        knockoff_stat = stat.glmnet_coefdiff,
+                       seed = 24601,
                        mu = NULL,Sigma =NULL,#parameter for gaussian knockoff
-                       pInit = NULL, Q = NULL,pEmit = NULL, #parameter for hmm knockoff
-                       seed = 24601){
+                       pInit = NULL, Q = NULL,pEmit = NULL #parameter for hmm knockoff
+                       ){
 #Initialization
 set.seed(seed)
 n = dim(X)[1]
