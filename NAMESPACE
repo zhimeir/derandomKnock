@@ -3,3 +3,4 @@
 export(derandomKnock)
 export(getRejectionSet)
 export(getV)
+export(pfer_filter)
