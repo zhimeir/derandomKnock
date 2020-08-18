@@ -41,8 +41,37 @@ derandomKnock(
 
 \item{alpha}{a number between 0 and 1 indicating the target k-FWER level.}
 
-\item{knockoff_method}{either "gaussian" or "hmm".}
+\item{knockoff_method}{either "gaussian" or "hmm" (default: "gaussian").}
+
+\item{mu}{a length-p mean vector of X if it follows a Gaussian distribution.}
+
+\item{Sigma}{a p-by-p covariance matrix of X if it follows a Gaussian distribution.}
+
+\item{pInit}{n array of length K, containing the marginal distribution of the states for the first variable, if X is sampled from an HMM.}
+
+\item{Q}{an array of size (p-1,K,K), containing a list of p-1 transition matrices between the K states of the Markov chain, if X is sampled from an HMM.}
+
+\item{pEmit}{an array of size (p,M,K), containing the emission probabilities for each of the M possible emission states, from each of the K hidden states and the p variables, if X is sampled from an HMM.}
 }
 \description{
-The main function the implement the derandomized knockoffs procedure.
+The main function that implements the derandomized knockoffs procedure.
+}
+\examples{
+ #Generate data
+ n <- 100; p <- 50; s <- 10;
+ rho <- 0.5;
+ Sigma <- toeplitz(rho^(1:p-1))
+ X <- matrix(rnorm(n*p),n,p)\%*\%chol(Sigma)
+ beta <- rep(0,p)
+ beta[1:s] <- 3.5/sqrt(n)
+ y <- X\%*\%beta+rnorm(n)
+
+# Control PFER at level v=1
+S <- derandomKnock(X,y,type = "pfer",v=1, knockoff_method = "gaussian",
+                   mu = rep(0,p),Sigma = Sigma)
+
+# Control 1-FWER at level alpha=0.1
+S <- derandomKnock(X,y,type = "kfwer", k=1, alpha = 0.1, knockoff_method = "gaussian",
+                   mu = rep(0,p),Sigma = Sigma)
+
 }

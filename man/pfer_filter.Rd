@@ -2,7 +2,7 @@
 % Please edit documentation in R/pfer_filter.R
 \name{pfer_filter}
 \alias{pfer_filter}
-\title{A filter}
+\title{A filter for PFER control}
 \usage{
 pfer_filter(
   X,
@@ -20,6 +20,44 @@ pfer_filter(
   pEmit = NULL
 )
 }
+\arguments{
+\item{X}{a n-by-p matrix of the covariates.}
+
+\item{y}{the response vector of length in (can be continuous or binary).}
+
+\item{M}{an integer specifying the number of knockoff copies computed (default: 30).}
+
+\item{tau}{a number betweem 0 and 1 indicating the selection frequency (default: 0.5).}
+
+\item{knockoff_method}{either "gaussian" or "hmm" (default: "gaussian").}
+
+\item{knockoff_stat}{An function in \code{\link[knockoff]{statistics}}}
+
+\item{seed}{an integer specifying the random seed used in the procedure.}
+
+\item{mu}{a length-p mean vector of X if it follows a Gaussian distribution.}
+
+\item{Sigma}{a p-by-p covariance matrix of X if it follows a Gaussian distribution.}
+
+\item{pInit}{n array of length K, containing the marginal distribution of the states for the first variable, if X is sampled from an HMM.}
+
+\item{Q}{an array of size (p-1,K,K), containing a list of p-1 transition matrices between the K states of the Markov chain, if X is sampled from an HMM.}
+
+\item{pEmit}{an array of size (p,M,K), containing the emission probabilities for each of the M possible emission states, from each of the K hidden states and the p variables, if X is sampled from an HMM.}
+
+\item{type}{the type of error to control. Options include "pfer" and "kfwer".}
+
+\item{k}{a positive integer corresponding to k-FWER.}
+
+\item{alpha}{a number between 0 and 1 indicating the target k-FWER level.}
+}
 \description{
-A filter
+The function to implement the derandomized knockoffs procedure with PFER control.
+}
+\examples{
+#Generate data
+n <- 100; p <- 50; s <- 10;
+rho <- 0.5;
+Sigma <- toeplitz(rho^(1:p-1))
+
 }
