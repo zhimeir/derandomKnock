@@ -57,13 +57,13 @@ derandomKnock <- function(X,y,type = "pfer",
     if(v<0) stop("The PFER target v should be positive!")
     ## Continuous response
     if(response == "continuous"){
-      knockoff_stat  <-  "stat.glmnet_coefdiff"
+      knockoff_stat  <-  stat.glmnet_coefdiff
       res <- pfer_filter(X,y,v0 = v,M,tau,knockoff_method,
                          knockoff_stat,seed,mu,Sigma,pInit,Q,pEmit)
     }
     ## Binary response
     if(response == "binary"){
-      knockoff_stat  <-  "stat.lasso_coefdiff_bin"
+      knockoff_stat  <-  stat.lasso_coefdiff_bin
       res <- pfer_filter(X,y,v0 = v,M,tau,knockoff_method,
                          knockoff_stat,seed,mu,Sigma,pInit,Q,pEmit)
     }
@@ -76,13 +76,13 @@ derandomKnock <- function(X,y,type = "pfer",
     
     ## Continuous response
     if(response == "continuous"){
-      knockoff_stat  <-  "stat.glmnet_coefdiff"
+      knockoff_stat  <-  stat.glmnet_coefdiff
       res <- fwer_filter(X,y,k,alpha,M,tau,knockoff_method,
                          knockoff_stat,seed,mu,Sigma,pInit,Q,pEmit)
     }
     ## Binary response
     if(response == "binary"){
-      knockoff_stat  <-  "stat.lasso_coefdiff_bin"
+      knockoff_stat  <-  stat.lasso_coefdiff_bin
       res <- fwer_filter(X,y,k,alpha,M,tau,knockoff_method,
                          knockoff_stat,seed,mu,Sigma,pInit,Q,pEmit)
     }
