@@ -32,7 +32,7 @@ fwer_filter(
 
 \item{M}{an integer specifying the number of knockoff copies computed (default: 30).}
 
-\item{tau}{a number betweem 0 and 1 indicating the selection frequency (default: 0.5).}
+\item{tau}{a number betweem 0 and 1 indicating the threshold of the selection frequency (default: 0.5).}
 
 \item{knockoff_method}{either "gaussian" or "hmm" (default: "gaussian").}
 

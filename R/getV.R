@@ -1,6 +1,7 @@
-#' Stable knockoff(fdx)
-#' internal function to determine v
-#' 
+#' Cumputing the parameter of the base procedure
+#'
+#' internal function to determine the parameter of the base procedure
+#'
 #' @export
 
 #Auxiliary functions
@@ -25,7 +26,7 @@ root_exp <- function(k,alpha,accuracy = 0.05,length,tau=0.5,nu){
     vfun[i] = (2*v/tau/(v/tau+k))^v*((2*k)/(v/tau+k))^(k*tau)
     vfun[i] = 1/vfun[i]/(1+nu)
   }
-  v =max(which(vfun<=alpha))*accuracy
+  v = suppressWarnings(max(which(vfun<=alpha))*accuracy)
   return(v)
 }
 
@@ -35,6 +36,6 @@ root_2 <- function(k,alpha,accuracy = 0.05,length,tau=0.5,h2 = h2){
     v = accuracy*i
     vfun[i] =(v^2+2*v)/tau^2/k/(k+2*h2)
   }
-  v =max(which(vfun<=alpha))*accuracy
+  v =suppressWarnings(max(which(vfun<=alpha))*accuracy)
   return(v)
 }

@@ -1,4 +1,4 @@
-#' A filter for PFER control
+#' Stable variable selection with PFER control
 #'
 #' The function to implement the derandomized knockoffs procedure with PFER control. 
 #'
@@ -9,7 +9,7 @@
 #' @param tau a number betweem 0 and 1 indicating the selection frequency (default: 0.5).
 #' @param seed an integer specifying the random seed used in the procedure.
 #' @param knockoff_method either "gaussian" or "hmm" (default: "gaussian").
-#' @param knockoff_stat A statistic in \code{\link[knockoff]}
+#' @param knockoff_stat a feature importance statistic in the \code{\link{knockoff}} pacakge (e.g., \code{\link{stat.glmnet_coefdiff}}).
 #' @param mu a length-p mean vector of X if it follows a Gaussian distribution.
 #' @param Sigma a p-by-p covariance matrix of X if it follows a Gaussian distribution.
 #' @param pInit n array of length K, containing the marginal distribution of the states for the first variable, if X is sampled from an HMM.

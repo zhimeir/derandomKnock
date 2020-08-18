@@ -6,13 +6,6 @@
 \usage{
 getV(k, alpha, accuracy = 0.05, tau = 0.5, h1, h2, nu, xi)
 }
-\arguments{
-\item{k}{a positive integer corresponding to k-FWER.}
-
-\item{alpha}{a number between 0 and 1 indicating the target k-FWER level.}
-
-\item{tau}{a number between 0 and 1 indicating the threshold of the selection frequency (default: 0.5).}
-}
 \description{
 internal function to determine the parameter of the base procedure
 }
