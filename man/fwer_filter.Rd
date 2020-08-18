@@ -2,7 +2,7 @@
 % Please edit documentation in R/fwer_filter.R
 \name{fwer_filter}
 \alias{fwer_filter}
-\title{Stable variable selection with k-FWER control}
+\title{Variable selection with k-FWER control}
 \usage{
 fwer_filter(
   X,

@@ -1,6 +1,6 @@
 Package: derandomKnock
 Title: An R package to implement the derandomized knockoffs procedure
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person(given = "Zhimei",
            family = "Ren",
@@ -16,3 +16,5 @@ Imports:
     knockoff,
     glmnet,
     SNPknock
+URL: https://github.com/zhimeir/derandomKnock
+BugReports: https://github.com/zhimeir/derandomKnock/issues

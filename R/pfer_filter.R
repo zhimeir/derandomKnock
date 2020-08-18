@@ -1,4 +1,4 @@
-#' Stable variable selection with PFER control
+#' Variable selection with PFER control
 #'
 #' The function to implement the derandomized knockoffs procedure with PFER control. 
 #'

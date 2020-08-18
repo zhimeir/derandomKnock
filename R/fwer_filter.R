@@ -1,4 +1,4 @@
-#' Stable variable selection with k-FWER control
+#' Variable selection with k-FWER control
 #'
 #' The function to implement the derandomized knockoffs procedure with k-FWER control.
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/pfer_filter.R
 \name{pfer_filter}
 \alias{pfer_filter}
-\title{Stable variable selection with PFER control}
+\title{Variable selection with PFER control}
 \usage{
 pfer_filter(
   X,
