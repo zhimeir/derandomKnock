@@ -15,7 +15,6 @@
 #' @param pInit n array of length K, containing the marginal distribution of the states for the first variable, if X is sampled from an HMM.
 #' @param Q an array of size (p-1,K,K), containing a list of p-1 transition matrices between the K states of the Markov chain, if X is sampled from an HMM.
 #' @param pEmit an array of size (p,M,K), containing the emission probabilities for each of the M possible emission states, from each of the K hidden states and the p variables, if X is sampled from an HMM.
-#'
 #' @return S the selection set.
 #' @return pi the selection frequency of all selected variables.
 #' @return tau the selection threshold
