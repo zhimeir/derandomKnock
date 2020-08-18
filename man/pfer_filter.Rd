@@ -33,7 +33,7 @@ pfer_filter(
 
 \item{knockoff_method}{either "gaussian" or "hmm" (default: "gaussian").}
 
-\item{knockoff_stat}{A statistic in \code{\link[knockoff]}}
+\item{knockoff_stat}{A statistic in \code{\link{knockoff}}}
 
 \item{seed}{an integer specifying the random seed used in the procedure.}
 
