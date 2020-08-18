@@ -38,7 +38,7 @@
 #'
 #' @export
 
-pfer_filter <- function(X,y, v0 = 1, M = 50, tau =0.5, knockoff_method = "gaussian",
+pfer_filter <- function(X,y, v0 = 1, M = 30, tau =0.5, knockoff_method = "gaussian",
                             knockoff_stat = stat.glmnet_coefdiff,seed = 24601,
                             mu = NULL,Sigma =NULL,#parameter for gaussian knockoff
                             pInit = NULL, Q = NULL,pEmit = NULL #parameter for hmm knockoff
@@ -57,7 +57,7 @@ pfer_filter <- function(X,y, v0 = 1, M = 50, tau =0.5, knockoff_method = "gaussi
   ## Check the parameters
   if(M<=0) stop("The number of knockoff runs should be positive!")
   if(tau>1 | tau<0) stop("The selection probability should be between 0 and 1!")
-  if(v<0) stop("The PFER target v should be positive!")
+  if(v0<0) stop("The PFER target v0 should be positive!")
 
   ## Check the knockoff-related input
   if(knockoff_method %in% c("gaussian","hmm") == 0) stop("The type of knockoffs is not supported!")

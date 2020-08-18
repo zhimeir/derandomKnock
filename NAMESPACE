@@ -2,5 +2,4 @@
 
 export(derandomKnock)
 export(fwer_filter)
-export(getV)
 export(pfer_filter)

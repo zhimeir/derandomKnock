@@ -9,7 +9,7 @@ fwer_filter(
   y,
   k = 1,
   alpha = 0.1,
-  M = 50,
+  M = 30,
   tau = 0.5,
   knockoff_method = "gaussian",
   knockoff_stat = stat.glmnet_coefdiff,

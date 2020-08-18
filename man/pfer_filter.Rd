@@ -8,7 +8,7 @@ pfer_filter(
   X,
   y,
   v0 = 1,
-  M = 50,
+  M = 30,
   tau = 0.5,
   knockoff_method = "gaussian",
   knockoff_stat = stat.glmnet_coefdiff,
