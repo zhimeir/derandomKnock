@@ -43,24 +43,40 @@ pfer_filter <- function(X,y, v0 = 1, M = 50, tau =0.5, knockoff_method = "gaussi
                             mu = NULL,Sigma =NULL,#parameter for gaussian knockoff
                             pInit = NULL, Q = NULL,pEmit = NULL #parameter for hmm knockoff
                             ){
-#check input
-#Initialization
-set.seed(seed)
-n = dim(X)[1]
-p = dim(X)[2]
-pi = rep(0,p)
-lambda = rep(0,p)
-if(knockoff_method == "gaussian"){
-  diags = knockoff::create.solve_asdp(Sigma)
-}
+  ## Check the dependencies
+  list_of_packages <- c("knockoff","glmnet","SNPknock","doMC")
+  new_packages <- list_of_packages[!(list_of_packages %in% installed.packages()[,"Package"])]
+  if(length(new_packages)) install.packages(new_packages, repos='http://cran.us.r-project.org')
+  suppressPackageStartupMessages(res <- lapply(X=list_of_packages,FUN=require,character.only=TRUE))
 
-#Main part
+  ## Check the dimension
+  n <- dim(X)[1]
+  p <- dim(X)[2]
+  if(length(y)!=n) stop("The dimension of X and y does not match!")
+
+  ## Check the parameters
+  if(M<=0) stop("The number of knockoff runs should be positive!")
+  if(tau>1 | tau<0) stop("The selection probability should be between 0 and 1!")
+  if(v<0) stop("The PFER target v should be positive!")
+
+  ## Check the knockoff-related input
+  if(knockoff_method %in% c("gaussian","hmm") == 0) stop("The type of knockoffs is not supported!")
+
+  ## Initialization
+  set.seed(seed)
+  pi = rep(0,p)
+  lambda = rep(0,p)
+  if(knockoff_method == "gaussian"){
+    diags = knockoff::create.solve_asdp(Sigma)
+  }
+
+  ## Multiple knockoff runs
   for (m in 1:M){
     v = floor(v0)+rbinom(1,1,v0-floor(v0))
     if(knockoff_method == "gaussian"){
-    Xk = create.gaussian(X,mu,Sigma,diag_s = diags)}
+      Xk = create.gaussian(X,mu,Sigma,diag_s = diags)}
     if(knockoff_method == "hmm"){
-    Xk = knockoffHMM(X, pInit, Q,pEmit,seed = seed+m)
+      Xk = knockoffHMM(X, pInit, Q,pEmit,seed = seed+m)
     }
     W = knockoff_stat(X,Xk,y)
     order_w = order(abs(W),decreasing = TRUE)
@@ -75,12 +91,12 @@ if(knockoff_method == "gaussian"){
         S = which(sorted_w[1:TT]>0)
         S = order_w[S]
         pi[S] = pi[S]+1
-      }
+        }
       }
   }
   pi = pi/M
   S = which(pi>=tau)
-  
+
 return(list(S=S,pi=pi,tau = tau,W = W))
 }
 

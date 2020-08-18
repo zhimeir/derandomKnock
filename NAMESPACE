@@ -2,6 +2,5 @@
 
 export(derandomKnock)
 export(fwer_filter)
-export(getRejectionSet)
 export(getV)
 export(pfer_filter)
