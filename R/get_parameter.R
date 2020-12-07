@@ -1,6 +1,6 @@
-#' Determining the parameter
+#' Determining the parameter for the base filter
 #'
-#' A function to determine the parameters for the derandomized knockoffs procedure
+#' A function to determine the parameters for the derandomized knockoffs procedure 
 #'
 #' @param type the type of error to control. Options include "pfer" and "kfwer".
 #' @param v a positive numver indicating the PFER target (default: 1). Can be left NULL if using the kfwer error.

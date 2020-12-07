@@ -2,7 +2,7 @@
 % Please edit documentation in R/solve_lp.R
 \name{get_lp_bnd}
 \alias{get_lp_bnd}
-\title{Determine the parameter for PFER/k-FWER control}
+\title{Solve the linear programming problem to obtain an upper bound of the ratio between the tail bound and the expectation}
 \usage{
 get_lp_bnd(M, eta, beta = 1)
 }
@@ -13,6 +13,9 @@ get_lp_bnd(M, eta, beta = 1)
 
 \item{beta}{a number between 0 and 1 specifying the vanishing speed of the density.}
 }
+\value{
+opt_ratio The optimal ratio between the tail bound and the expectation.
+}
 \description{
-Determine the parameter for PFER/k-FWER control
+Solve the linear programming problem to obtain an upper bound of the ratio between the tail bound and the expectation
 }

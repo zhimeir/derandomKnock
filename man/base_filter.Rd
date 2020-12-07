@@ -2,7 +2,7 @@
 % Please edit documentation in R/base_filter.R
 \name{base_filter}
 \alias{base_filter}
-\title{Variable selection with PFER control}
+\title{Derandomized knockoff filter}
 \usage{
 base_filter(
   X,
@@ -25,7 +25,7 @@ base_filter(
 
 \item{y}{the response vector of length in (can be continuous or binary).}
 
-\item{v0}{a positive numver indicating the PFER target (default: 1). Can be left NULL if using the kfwer error.}
+\item{v0}{a positive numver indicating the parameter of the base procedure.}
 
 \item{M}{an integer specifying the number of knockoff copies computed (default: 30).}
 
@@ -52,12 +52,10 @@ S the selection set.
 
 pi the selection frequency of all selected variables.
 
-tau the selection threshold
-
 W a M-by-p matrix of the computed knockoff feature importance statistics.
 }
 \description{
-The function to implement the derandomized knockoffs procedure with PFER control.
+The function implements the derandomized knockoffs and produces a rejection set
 }
 \examples{
 #Generate data
@@ -66,11 +64,11 @@ rho <- 0.5;
 Sigma <- toeplitz(rho^(1:p-1))
 X <- matrix(rnorm(n*p),n,p)\%*\%chol(Sigma)
 beta <- rep(0,p)
-beta[1:s] <- 3.5/sqrt(n)
+beta[1:s] <- 5/sqrt(n)
 y <- X\%*\%beta+rnorm(n)
 
 # Control PFER at level v=1
-res <- pfer_filter(X,y,v0=1, knockoff_method = "gaussian",
+res <- base_filter(X,y,v0=1, knockoff_method = "gaussian",
                  knockoff_stat = stat.glmnet_coefdiff,
                  mu = rep(0,p),Sigma = Sigma)
 

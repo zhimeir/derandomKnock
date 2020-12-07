@@ -1,8 +1,10 @@
-#' Determine the parameter for PFER/k-FWER control
+#' Solve the linear programming problem to obtain an upper bound of the ratio between the tail bound and the expectation
 #'
 #' @param M an integer specifying the number of knockoff copies computed (default: 30).
 #' @param eta a number betweem 0 and 1 indicating the selection frequency (default: 0.5).
 #' @param beta a number between 0 and 1 specifying the vanishing speed of the density.
+#'
+#' @return opt_ratio The optimal ratio between the tail bound and the expectation.
 #'
 #' @export
 

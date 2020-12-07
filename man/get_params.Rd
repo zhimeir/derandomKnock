@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_parameter.R
 \name{get_params}
 \alias{get_params}
-\title{Determining the parameter}
+\title{Determining the parameter for the base filter}
 \usage{
 get_params(
   type,
