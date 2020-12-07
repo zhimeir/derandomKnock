@@ -1,5 +1,7 @@
 *.swp
+*.swo
 local.R
 .DS_Store
 .Rbuildignore
 .Rhistory
+.Rbuildignore
