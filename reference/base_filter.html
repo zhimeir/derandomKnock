@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Variable selection with PFER control — base_filter • derandomKnock</title>
+<title>Derandomized knockoff filter — base_filter • derandomKnock</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Variable selection with PFER control — base_filter" />
-<meta property="og:description" content="The function to implement the derandomized knockoffs procedure with PFER control." />
+<meta property="og:title" content="Derandomized knockoff filter — base_filter" />
+<meta property="og:description" content="The function implements the derandomized knockoffs and produces a rejection set" />
 
 
 
@@ -108,13 +108,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Variable selection with PFER control</h1>
+    <h1>Derandomized knockoff filter</h1>
     <small class="dont-index">Source: <a href='https://github.com/zhimeir/derandomKnock/blob/master/R/base_filter.R'><code>R/base_filter.R</code></a></small>
     <div class="hidden name"><code>base_filter.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The function to implement the derandomized knockoffs procedure with PFER control.</p>
+    <p>The function implements the derandomized knockoffs and produces a rejection set</p>
     </div>
 
     <pre class="usage"><span class='fu'>base_filter</span><span class='op'>(</span>
@@ -146,7 +146,7 @@
     </tr>
     <tr>
       <th>v0</th>
-      <td><p>a positive numver indicating the PFER target (default: 1). Can be left NULL if using the kfwer error.</p></td>
+      <td><p>a positive numver indicating the parameter of the base procedure.</p></td>
     </tr>
     <tr>
       <th>M</th>
@@ -194,7 +194,6 @@
 
     <p>S the selection set.</p>
 <p>pi the selection frequency of all selected variables.</p>
-<p>tau the selection threshold</p>
 <p>W a M-by-p matrix of the computed knockoff feature importance statistics.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -204,14 +203,14 @@
 <span class='va'>Sigma</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/toeplitz.html'>toeplitz</a></span><span class='op'>(</span><span class='va'>rho</span><span class='op'>^</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='va'>p</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>*</span><span class='va'>p</span><span class='op'>)</span>,<span class='va'>n</span>,<span class='va'>p</span><span class='op'>)</span><span class='op'>%*%</span><span class='fu'><a href='https://rdrr.io/r/base/chol.html'>chol</a></span><span class='op'>(</span><span class='va'>Sigma</span><span class='op'>)</span>
 <span class='va'>beta</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='va'>p</span><span class='op'>)</span>
-<span class='va'>beta</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='va'>s</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>3.5</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
+<span class='va'>beta</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='va'>s</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>5</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
 <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='va'>X</span><span class='op'>%*%</span><span class='va'>beta</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
 
 <span class='co'># Control PFER at level v=1</span>
-<span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'>pfer_filter</span><span class='op'>(</span><span class='va'>X</span>,<span class='va'>y</span>,v0<span class='op'>=</span><span class='fl'>1</span>, knockoff_method <span class='op'>=</span> <span class='st'>"gaussian"</span>,
+<span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'>base_filter</span><span class='op'>(</span><span class='va'>X</span>,<span class='va'>y</span>,v0<span class='op'>=</span><span class='fl'>1</span>, knockoff_method <span class='op'>=</span> <span class='st'>"gaussian"</span>,
                  knockoff_stat <span class='op'>=</span> <span class='va'>stat.glmnet_coefdiff</span>,
                  mu <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='va'>p</span><span class='op'>)</span>,Sigma <span class='op'>=</span> <span class='va'>Sigma</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in pfer_filter(X, y, v0 = 1, knockoff_method = "gaussian", knockoff_stat = stat.glmnet_coefdiff,     mu = rep(0, p), Sigma = Sigma): could not find function "pfer_filter"</span></div><div class='input'>
+
 
 </div></pre>
   </div>
