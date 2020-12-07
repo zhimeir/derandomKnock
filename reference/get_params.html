@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Authors • derandomKnock</title>
+<title>Determining the parameter — get_params • derandomKnock</title>
 
 
 <!-- jquery -->
@@ -18,8 +18,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
-<link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script>
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
@@ -33,13 +33,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="Authors" />
+<meta property="og:title" content="Determining the parameter — get_params" />
+<meta property="og:description" content="A function to determine the parameters for the derandomized knockoffs procedure" />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-authors">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,7 +71,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">derandomKnock</a>
+        <a class="navbar-link" href="../index.html">derandomKnock</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
@@ -78,13 +79,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -105,22 +106,65 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Authors</h1>
+    <h1>Determining the parameter</h1>
+    <small class="dont-index">Source: <a href='https://github.com/zhimeir/derandomKnock/blob/master/R/get_parameter.R'><code>R/get_parameter.R</code></a></small>
+    <div class="hidden name"><code>get_params.Rd</code></div>
     </div>
 
-    <ul class="list-unstyled">
-      <li>
-        <p><strong>Zhimei Ren</strong>. Author, maintainer. 
-        </p>
-      </li>
-    </ul>
+    <div class="ref-description">
+    <p>A function to determine the parameters for the derandomized knockoffs procedure</p>
+    </div>
+
+    <pre class="usage"><span class='fu'>get_params</span><span class='op'>(</span>
+  <span class='va'>type</span>,
+  v <span class='op'>=</span> <span class='cn'>NULL</span>,
+  k <span class='op'>=</span> <span class='cn'>NULL</span>,
+  alpha <span class='op'>=</span> <span class='cn'>NULL</span>,
+  M <span class='op'>=</span> <span class='cn'>NULL</span>,
+  eta <span class='op'>=</span> <span class='cn'>NULL</span>,
+  thres <span class='op'>=</span> <span class='fl'>50</span>,
+  beta <span class='op'>=</span> <span class='fl'>1</span>
+<span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>type</th>
+      <td><p>the type of error to control. Options include "pfer" and "kfwer".</p></td>
+    </tr>
+    <tr>
+      <th>v</th>
+      <td><p>a positive numver indicating the PFER target (default: 1). Can be left NULL if using the kfwer error.</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>a positive integer corresponding to k-FWER.</p></td>
+    </tr>
+    <tr>
+      <th>alpha</th>
+      <td><p>a number between 0 and 1 indicating the target k-FWER level.</p></td>
+    </tr>
+    <tr>
+      <th>M</th>
+      <td><p>an integer specifying the number of knockoff copies computed (default: 30).</p></td>
+    </tr>
+    <tr>
+      <th>eta</th>
+      <td><p>a number betweem 0 and 1 indicating the selection frequency (default: 0.5).</p></td>
+    </tr>
+    </table>
+
 
   </div>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
+  </div>
 </div>
-
 
 
       <footer>
