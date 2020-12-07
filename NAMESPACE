@@ -2,6 +2,5 @@
 
 export(base_filter)
 export(derandomKnock)
-export(fwer_filter)
 export(get_lp_bnd)
 export(get_params)

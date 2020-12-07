@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Stable variable selection with k-FWER control — fwer_filter • derandomKnock</title>
+<title>Variable selection with k-FWER control — fwer_filter • derandomKnock</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Stable variable selection with k-FWER control — fwer_filter" />
+<meta property="og:title" content="Variable selection with k-FWER control — fwer_filter" />
 <meta property="og:description" content="The function to implement the derandomized knockoffs procedure with k-FWER control." />
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">derandomKnock</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -89,7 +89,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/zhimeir/derandomKnock/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -103,8 +108,8 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Stable variable selection with k-FWER control</h1>
-    
+    <h1>Variable selection with k-FWER control</h1>
+    <small class="dont-index">Source: <a href='https://github.com/zhimeir/derandomKnock/blob/master/R/fwer_filter.R'><code>R/fwer_filter.R</code></a></small>
     <div class="hidden name"><code>fwer_filter.Rd</code></div>
     </div>
 
@@ -112,22 +117,22 @@
     <p>The function to implement the derandomized knockoffs procedure with k-FWER control.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fwer_filter</span>(
-  <span class='no'>X</span>,
-  <span class='no'>y</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>M</span> <span class='kw'>=</span> <span class='fl'>30</span>,
-  <span class='kw'>tau</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>knockoff_method</span> <span class='kw'>=</span> <span class='st'>"gaussian"</span>,
-  <span class='kw'>knockoff_stat</span> <span class='kw'>=</span> <span class='no'>stat.glmnet_coefdiff</span>,
-  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>24601</span>,
-  <span class='kw'>mu</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>Sigma</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>pInit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>Q</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>pEmit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>fwer_filter</span><span class='op'>(</span>
+  <span class='va'>X</span>,
+  <span class='va'>y</span>,
+  k <span class='op'>=</span> <span class='fl'>1</span>,
+  alpha <span class='op'>=</span> <span class='fl'>0.1</span>,
+  M <span class='op'>=</span> <span class='fl'>30</span>,
+  tau <span class='op'>=</span> <span class='fl'>0.5</span>,
+  knockoff_method <span class='op'>=</span> <span class='st'>"gaussian"</span>,
+  knockoff_stat <span class='op'>=</span> <span class='va'>stat.glmnet_coefdiff</span>,
+  seed <span class='op'>=</span> <span class='fl'>24601</span>,
+  mu <span class='op'>=</span> <span class='cn'>NULL</span>,
+  Sigma <span class='op'>=</span> <span class='cn'>NULL</span>,
+  pInit <span class='op'>=</span> <span class='cn'>NULL</span>,
+  Q <span class='op'>=</span> <span class='cn'>NULL</span>,
+  pEmit <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -199,17 +204,18 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'> <span class='co'>#Generate data</span>
- <span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fl'>100</span>; <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fl'>50</span>; <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fl'>10</span>;
- <span class='no'>rho</span> <span class='kw'>&lt;-</span> <span class='fl'>0.5</span>;
- <span class='no'>Sigma</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/toeplitz.html'>toeplitz</a></span>(<span class='no'>rho</span>^(<span class='fl'>1</span>:<span class='no'>p</span>-<span class='fl'>1</span>))
- <span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>n</span>*<span class='no'>p</span>),<span class='no'>n</span>,<span class='no'>p</span>)<span class='kw'>%*%</span><span class='fu'><a href='https://rdrr.io/r/base/chol.html'>chol</a></span>(<span class='no'>Sigma</span>)
- <span class='no'>beta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>0</span>,<span class='no'>p</span>)
- <span class='no'>beta</span>[<span class='fl'>1</span>:<span class='no'>s</span>] <span class='kw'>&lt;-</span> <span class='fl'>3.5</span>/<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='no'>n</span>)
- <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='no'>X</span><span class='kw'>%*%</span><span class='no'>beta</span>+<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>n</span>)
+ <span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>100</span>; <span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fl'>50</span>; <span class='va'>s</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>;
+ <span class='va'>rho</span> <span class='op'>&lt;-</span> <span class='fl'>0.5</span>;
+ <span class='va'>Sigma</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/toeplitz.html'>toeplitz</a></span><span class='op'>(</span><span class='va'>rho</span><span class='op'>^</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='va'>p</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+ <span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>*</span><span class='va'>p</span><span class='op'>)</span>,<span class='va'>n</span>,<span class='va'>p</span><span class='op'>)</span><span class='op'>%*%</span><span class='fu'><a href='https://rdrr.io/r/base/chol.html'>chol</a></span><span class='op'>(</span><span class='va'>Sigma</span><span class='op'>)</span>
+ <span class='va'>beta</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='va'>p</span><span class='op'>)</span>
+ <span class='va'>beta</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='va'>s</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>3.5</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
+ <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='va'>X</span><span class='op'>%*%</span><span class='va'>beta</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
 
 <span class='co'># Control 1-FWER at level alpha=0.1</span>
-<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>fwer_filter</span>(<span class='no'>X</span>,<span class='no'>y</span>,<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"kfwer"</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>knockoff_method</span> <span class='kw'>=</span> <span class='st'>"gaussian"</span>,
-                   <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>0</span>,<span class='no'>p</span>),<span class='kw'>Sigma</span> <span class='kw'>=</span> <span class='no'>Sigma</span>,<span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>2020</span>)</div><div class='output co'>#&gt; <span class='error'>Error in fwer_filter(X, y, type = "kfwer", k = 1, alpha = 0.1, knockoff_method = "gaussian",     mu = rep(0, p), Sigma = Sigma, seed = 2020): unused argument (type = "kfwer")</span></div><div class='input'>
+<span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'>fwer_filter</span><span class='op'>(</span><span class='va'>X</span>,<span class='va'>y</span>,type <span class='op'>=</span> <span class='st'>"kfwer"</span>, k<span class='op'>=</span><span class='fl'>1</span>, alpha <span class='op'>=</span> <span class='fl'>0.1</span>, knockoff_method <span class='op'>=</span> <span class='st'>"gaussian"</span>,
+                   mu <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='va'>p</span><span class='op'>)</span>,Sigma <span class='op'>=</span> <span class='va'>Sigma</span>,seed <span class='op'>=</span> <span class='fl'>2020</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in fwer_filter(X, y, type = "kfwer", k = 1, alpha = 0.1, knockoff_method = "gaussian",     mu = rep(0, p), Sigma = Sigma, seed = 2020): unused argument (type = "kfwer")</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -226,7 +232,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

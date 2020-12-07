@@ -5,3 +5,4 @@ local.R
 .Rbuildignore
 .Rhistory
 .Rbuildignore
+docs/
