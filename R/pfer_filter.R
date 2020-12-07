@@ -38,7 +38,7 @@
 #'
 #' @export
 
-pfer_filter <- function(X,y, v0 = 1, M = 30, tau =0.5, knockoff_method = "gaussian",
+base_filter <- function(X,y, v0 = 1, M = 30, tau =0.5, knockoff_method = "gaussian",
                             knockoff_stat = stat.glmnet_coefdiff,seed = 24601,
                             mu = NULL,Sigma =NULL,#parameter for gaussian knockoff
                             pInit = NULL, Q = NULL,pEmit = NULL #parameter for hmm knockoff
@@ -96,7 +96,7 @@ pfer_filter <- function(X,y, v0 = 1, M = 30, tau =0.5, knockoff_method = "gaussi
   pi <- pi/M
   S <- which(pi>=tau)
 
-return(list(S=S,pi=pi,tau=tau,W=W))
+return(list(S=S,pi=pi,W=W))
 }
 
 

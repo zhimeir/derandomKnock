@@ -7,19 +7,23 @@
 derandomKnock(
   X,
   y,
-  type = "pfer",
-  M = 30,
-  tau = 0.5,
+  type,
+  M = NULL,
+  eta = NULL,
   seed = 24601,
   v = 1,
   k = 1,
   alpha = 0.05,
   knockoff_method = "gaussian",
+  knockoff_stat = stat.glmnet_coefdiff,
   mu = NULL,
   Sigma = NULL,
+  diags = NULL,
   pInit = NULL,
   Q = NULL,
-  pEmit = NULL
+  pEmit = NULL,
+  thres = 50,
+  beta = 1
 )
 }
 \arguments{
@@ -31,7 +35,7 @@ derandomKnock(
 
 \item{M}{an integer specifying the number of knockoff copies computed (default: 30).}
 
-\item{tau}{a number betweem 0 and 1 indicating the selection frequency (default: 0.5).}
+\item{eta}{a number betweem 0 and 1 indicating the selection frequency (default: 0.5).}
 
 \item{seed}{an integer specifying the random seed used in the procedure.}
 
@@ -43,9 +47,13 @@ derandomKnock(
 
 \item{knockoff_method}{either "gaussian" or "hmm" (default: "gaussian").}
 
+\item{knockoff_stat}{Knockoff statistics to used. See \code{\link[knockoff]{knockoff_stat}}(default: "stat.glmnet_diff")}
+
 \item{mu}{a length-p mean vector of X if it follows a Gaussian distribution.}
 
 \item{Sigma}{a p-by-p covariance matrix of X if it follows a Gaussian distribution.}
+
+\item{diags}{a length-p vector, containing the precomputed covariances between the original variables and the knockoffs.}
 
 \item{pInit}{n array of length K, containing the marginal distribution of the states for the first variable, if X is sampled from an HMM.}
 
@@ -68,7 +76,7 @@ The main function that implements the derandomized knockoffs procedure.
  Sigma <- toeplitz(rho^(1:p-1))
  X <- matrix(rnorm(n*p),n,p)\%*\%chol(Sigma)
  beta <- rep(0,p)
- beta[1:s] <- 3.5/sqrt(n)
+ beta[1:s] <- 5/sqrt(n)
  y <- X\%*\%beta+rnorm(n)
 
 # Control PFER at level v=1

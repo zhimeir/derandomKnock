@@ -3,7 +3,7 @@ An R package to implement the derandomized knockoffs procedure.
 
 ### Overview
 `derandomKnock` is an R package to implement the variable selection procedure <em>Derandomized Knockoffs</em>, proposed in our
-paper: [Derandomized Knockoffs](). Given the covariate maitrx and response vector, it automatically returns a set of selected variables with type-I 
+paper: [Derandomized Knockoffs](http://arxiv.org/abs/2012.02717). Given the covariate maitrx and response vector, it automatically returns a set of selected variables with type-I 
 error guarantee. 
 
 
