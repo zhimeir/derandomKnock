@@ -16,6 +16,7 @@ get_params <- function(type, v = NULL,
                        M = NULL,eta = NULL,
                        thres = 50, beta = 1){
   tol <- 1e-6
+  load("sysdata.rda")
   ## PFER control
   M_eta_mat <- M_eta_mat[M_list <= thres,]
   if(type == "pfer"){
