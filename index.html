@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,26 +33,20 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">derandomKnock</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/zhimeir/derandomKnock/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/zhimeir/derandomKnock/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -66,87 +62,99 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="derandomknock" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#derandomknock" class="anchor"></a>derandomKnock</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="derandomknock">derandomKnock<a class="anchor" aria-label="anchor" href="#derandomknock"></a>
+</h1></div>
 <p>An R package to implement the derandomized knockoffs procedure.</p>
-<div id="overview" class="section level3">
-<h3 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h3>
-<p><code>derandomKnock</code> is an R package that implements the variable selection procedure <em>Derandomized Knockoffs</em>, proposed in our paper: <a href="http://arxiv.org/abs/2012.02717">Derandomized Knockoffs</a>. Given the covariate maitrx and response vector, it automatically returns a set of selected variables with type-I error (PFER or k-FWER) control guarantee.</p>
+<div class="section level3">
+<h3 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h3>
+<p><code>derandomKnock</code> is an R package that implements the variable selection procedure <em>Derandomized Knockoffs</em>, proposed in our paper: <a href="http://arxiv.org/abs/2012.02717" class="external-link">Derandomized Knockoffs</a>. Given the covariate maitrx and response vector, it automatically returns a set of selected variables with type-I error (PFER or k-FWER) control guarantee.</p>
 </div>
-<div id="installation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h3>
+<div class="section level3">
+<h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h3>
 <p>To install the package, run the following command in your R console:</p>
-<pre class="{r}"><code>if (!require("devtools")){
-    install.packages("devtools")
-}
-devtools::install_github("zhimeir/derandomKnock")</code></pre>
+<pre class="{r}"><code><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"zhimeir/derandomKnock"</span><span class="op">)</span></code></pre>
 </div>
-<div id="usage-example" class="section level3">
-<h3 class="hasAnchor">
-<a href="#usage-example" class="anchor"></a>Usage Example</h3>
+<div class="section level3">
+<h3 id="usage-example">Usage Example<a class="anchor" aria-label="anchor" href="#usage-example"></a>
+</h3>
 <p>We illustrate the usage of <code>derandomKnock</code> via a synthetic example. We first generate the data from a linear model.</p>
-<pre class="{r}"><code><a href="https://github.com/zhimeir/derandomKnock">library(derandomKnock)
-# Generate the data
-n=100;p=50;s=10;
-rho=0.5;
-Sigma=toeplitz(rho^(1:p-1))
-X=matrix(rnorm(n*p),n,p)%*%chol(Sigma)
-beta=rep(0,p)
-beta[1:s]=5/sqrt(n)
-y=X%*%beta+rnorm(n)</a></code></pre>
+<pre class="{r}"><code><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/zhimeir/derandomKnock" class="external-link">derandomKnock</a></span><span class="op">)</span>
+<span class="co"># Generate the data</span>
+<span class="va">n</span><span class="op">=</span><span class="fl">100</span>;<span class="va">p</span><span class="op">=</span><span class="fl">50</span>;<span class="va">s</span><span class="op">=</span><span class="fl">10</span>;
+<span class="va">rho</span><span class="op">=</span><span class="fl">0.5</span>;
+<span class="va">Sigma</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/toeplitz.html" class="external-link">toeplitz</a></span><span class="op">(</span><span class="va">rho</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">p</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="va">X</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">*</span><span class="va">p</span><span class="op">)</span>,<span class="va">n</span>,<span class="va">p</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span><span class="fu"><a href="https://rdrr.io/r/base/chol.html" class="external-link">chol</a></span><span class="op">(</span><span class="va">Sigma</span><span class="op">)</span>
+<span class="va">beta</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="va">p</span><span class="op">)</span>
+<span class="va">beta</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">s</span><span class="op">]</span><span class="op">=</span><span class="fl">5</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
+<span class="va">y</span><span class="op">=</span><span class="va">X</span><span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span><span class="va">beta</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span></code></pre>
 <p>Suppose we want a selection set with PFER controlled by 1:</p>
-<pre class="{r}"><code>res &lt;- derandomKnock(X,y,type = "pfer",v=1, 
-                  #type of knockoffs generated
-                  knockoff_method = "gaussian",
-                  #details about the distribution of X
-                  mu = rep(0,p),Sigma = Sigma)</code></pre>
+<pre class="{r}"><code><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/derandomKnock.html">derandomKnock</a></span><span class="op">(</span><span class="va">X</span>,<span class="va">y</span>,type <span class="op">=</span> <span class="st">"pfer"</span>,v<span class="op">=</span><span class="fl">1</span>, 
+                  <span class="co">#type of knockoffs generated</span>
+                  knockoff_method <span class="op">=</span> <span class="st">"gaussian"</span>,
+                  <span class="co">#details about the distribution of X</span>
+                  mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="va">p</span><span class="op">)</span>,Sigma <span class="op">=</span> <span class="va">Sigma</span><span class="op">)</span></code></pre>
 <p>Suppose we want a selection set with 1-FWER controlled by 0.1:</p>
-<pre class="{r}"><code>res &lt;- derandomKnock(X,y,type = "kfwer", k=1, alpha = 0.1, 
-                    #type of knockoffs generated
-                    knockoff_method = "gaussian",
-                    #details about the distribution of X
-                    mu = rep(0,p),Sigma = Sigma)</code></pre>
+<pre class="{r}"><code><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/derandomKnock.html">derandomKnock</a></span><span class="op">(</span><span class="va">X</span>,<span class="va">y</span>,type <span class="op">=</span> <span class="st">"kfwer"</span>, k<span class="op">=</span><span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.1</span>, 
+                    <span class="co">#type of knockoffs generated</span>
+                    knockoff_method <span class="op">=</span> <span class="st">"gaussian"</span>,
+                    <span class="co">#details about the distribution of X</span>
+                    mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="va">p</span><span class="op">)</span>,Sigma <span class="op">=</span> <span class="va">Sigma</span><span class="op">)</span></code></pre>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/zhimeir/derandomKnock/">https://​github.com/​zhimeir/​derandomKnock/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/zhimeir/derandomKnock/issues">https://​github.com/​zhimeir/​derandomKnock/​issues</a>
-</li>
+<li><a href="https://github.com/zhimeir/derandomKnock/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/zhimeir/derandomKnock/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing derandomKnock</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Zhimei Ren <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
 </div>
+
+
 
   </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Zhimei Ren.</p>
+  <p></p>
+<p>Developed by Zhimei Ren.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
@@ -154,6 +162,8 @@ y=X%*%beta+rnorm(n)</a></code></pre>
 
   
 
+
+  
 
   </body>
 </html>
